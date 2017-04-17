@@ -47,6 +47,8 @@ class SteamFactory implements SecurityFactoryInterface
         $builder = $node->children();
         $builder
             ->scalarNode('default_route')->end()
+            ->scalarNode('check_path')
+            ->end()
         ;
     }
 }

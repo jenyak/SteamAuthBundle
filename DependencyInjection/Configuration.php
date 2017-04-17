@@ -15,6 +15,10 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('steam_key')->end()
                 ->scalarNode('user_class')->end()
+//                ->children('properties')
+//                    ->scalarNode('username')->end()
+//                    ->scalarNode('user_class')->end()
+//                ->end()
             ->end()
             ;
 

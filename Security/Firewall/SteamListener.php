@@ -7,10 +7,10 @@ use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\Security\Http\RememberMe\RememberMeServicesInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\Routing\Router;
+use SteamAuthBundle\Security\Http\Util\TargetPathTrait;
 use SteamAuthBundle\Security\Token\SteamToken;
 
 class SteamListener implements ListenerInterface
