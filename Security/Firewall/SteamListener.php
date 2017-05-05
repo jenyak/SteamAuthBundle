@@ -22,6 +22,7 @@ class SteamListener implements ListenerInterface
     private $router;
     private $rememberMeServices;
     private $providerKey;
+    private $route;
     private $defaultRoute;
 
     public function __construct($defaultRoute, TokenStorageInterface $tokenStorage, AuthenticationManagerInterface $authenticationManager, Router $router)
@@ -30,6 +31,11 @@ class SteamListener implements ListenerInterface
         $this->tokenStorage = $tokenStorage;
         $this->authenticationManager = $authenticationManager;
         $this->router = $router;
+    }
+
+    public function setRoute($route)
+    {
+        $this->route = $route;
     }
 
     public function setProviderKey($providerKey)
@@ -50,12 +56,12 @@ class SteamListener implements ListenerInterface
     public function handle(GetResponseEvent $event)
     {
         $request = $event->getRequest();
-        if ($request->get('_route') != 'login_check') {
+        if ($request->get('_route') != $this->route) {
             return;
         }
 
         $token = new SteamToken();
-        $token->setUsername(str_replace("http://steamcommunity.com/openid/id/", "", $request->query->get('openid_claimed_id')));
+        $token->setUsername(str_replace('http://steamcommunity.com/openid/id/', '', $request->query->get('openid_claimed_id')));
         $token->setAttributes($request->query->all());
 
         $authToken = $this->authenticationManager->authenticate($token);

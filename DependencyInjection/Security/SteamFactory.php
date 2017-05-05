@@ -14,7 +14,7 @@ class SteamFactory implements SecurityFactoryInterface
     {
         $providerId = 'security.authentication.provider.steam.'.$id;
         $container
-            ->setDefinition($providerId, new DefinitionDecorator('steam.security.authentication.provider'))
+            ->setDefinition($providerId, new DefinitionDecorator($config['authentication_provider']))
             ->replaceArgument(0, new Reference($userProvider))
         ;
 
@@ -23,6 +23,7 @@ class SteamFactory implements SecurityFactoryInterface
             ->setDefinition($listenerId, new DefinitionDecorator('steam.security.authentication.listener'))
             ->replaceArgument(0, $config['default_route'])
             ->addMethodCall('setProviderKey', [$id])
+            ->addMethodCall('setRoute', [$config['check_route']])
             ->addTag('security.remember_me_aware', ['id' => $id, 'provider' => $userProvider])
         ;
 
@@ -47,7 +48,9 @@ class SteamFactory implements SecurityFactoryInterface
         $builder = $node->children();
         $builder
             ->scalarNode('default_route')->end()
-            ->scalarNode('check_path')
+            ->scalarNode('check_route')->end()
+            ->scalarNode('authentication_provider')
+                ->defaultValue('steam.security.authentication.provider')
             ->end()
         ;
     }

@@ -3,7 +3,6 @@ namespace SteamAuthBundle\Security\User;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use SteamAuthBundle\Service\SteamUserService;
 use Doctrine\ORM\EntityManager;
