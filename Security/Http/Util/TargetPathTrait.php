@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 if (trait_exists('Symfony\Component\Security\Http\Util\TargetPathTrait')) {
     trait TargetPathTrait
     {
-        use Symfony\Component\Security\Http\Util\TargetPathTrait;
+        use \Symfony\Component\Security\Http\Util\TargetPathTrait;
     }
 } else {
     trait TargetPathTrait
